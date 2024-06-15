@@ -21,7 +21,6 @@ public class Message {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "chamber")
     @OneToMany(mappedBy = "message")
     private List<Chamber> chambers;
 

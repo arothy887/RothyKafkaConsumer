@@ -19,6 +19,7 @@ public class Chamber {
     private Integer id;
 
     @ManyToOne
+    @JoinColumn(name = "message_id", referencedColumnName = "message_id")
     private Message message;
 
     @Column(name = "chamber_type")
