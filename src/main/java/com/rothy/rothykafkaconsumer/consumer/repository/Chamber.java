@@ -6,6 +6,10 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+
 @Entity(name = "chamber")
 @Getter
 @Builder
@@ -18,11 +22,15 @@ public class Chamber {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne
-    @JoinColumn(name = "message_id", referencedColumnName = "message_id")
-    private Message message;
+    @Column(name = "date")
+    @Builder.Default
+    private LocalDate date = LocalDate.now();
 
-    @Column(name = "chamber_type")
+    @Column(name = "time")
+    @Builder.Default
+    private LocalTime time = LocalTime.now();
+
+    @Column(name = "chamber_type", unique = true)
     private String chamberType;
     @Column(name = "high")
     private Integer high; // 0, 1

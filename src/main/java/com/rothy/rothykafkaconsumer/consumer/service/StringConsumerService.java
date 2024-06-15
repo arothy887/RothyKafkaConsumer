@@ -1,8 +1,7 @@
 package com.rothy.rothykafkaconsumer.consumer.service;
 
 import com.rothy.rothykafkaconsumer.consumer.repository.Chamber;
-import com.rothy.rothykafkaconsumer.consumer.repository.Message;
-import com.rothy.rothykafkaconsumer.consumer.repository.MessageRepository;
+import com.rothy.rothykafkaconsumer.consumer.repository.ChamberRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,7 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class StringConsumerService {
 
-    private final MessageRepository messageRepository;
+    private final ChamberRepository chamberRepository;
 
 
     @KafkaListener(topics = "${spring.kafka.consumer.topic}", groupId = "${spring.kafka.consumer.group-id}")
@@ -49,12 +48,7 @@ public class StringConsumerService {
                 .chamberType("D")
                 .build();
         List<Chamber> chamberList = Arrays.asList(chamberA, chamberB, chamberC, chamberD);
-        Message message1 = Message.builder()
-                .chambers(chamberList)
-                .build()
-        ;
-
-        messageRepository.save(message1);
+        chamberRepository.saveAll(chamberList);
 
         log.info("Received message >>>>>>>>>>>>>> : {}", message);
         // 메시지 처리 로직 추가
