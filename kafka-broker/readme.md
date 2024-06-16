@@ -1,5 +1,6 @@
 # kafka broker 실행
 1. docker 설치
+> https://www.docker.com/products/docker-desktop
 2. docker compose 설치
 3. docker compose 실행(현재 위치에서)
 > ``$ docker-compose up -d``
@@ -11,3 +12,8 @@
 > ``$ docker-compose exec kafka kafka-console-producer.sh --broker-list localhost:9092 --topic sample_topic``
 7. Kafka 메세지 발행
 > command 창에 메세지를 입력 후 Enter
+ 
+ 
+
+** 도커 실행이 안될 시 가상화 설정 체크
+https://stir.tistory.com/4
